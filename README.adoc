@@ -4,12 +4,13 @@
 
 === Compatible Devices
 
-You will need a Raspeberry Pi 3 or newer. +
-Testing conducted on a Raspberry Pi 4 (4GB)
+You will need at least a Raspberry Pi 3 or newer. +
+This guide has been tested using a Raspberry Pi 4 (4GB) with a 16GB MicroSD. +
+Notes on why the 64-bit installation is more tedious than comon raspberry pi installations and only runs on beta software can be found https://pimylifeup.com/raspberry-pi-64-bit/[here].
 
 [cols="1,1,1,1"]
 |===
-| *Model* | *Chip* | *Architecture* | *Compatible*
+| *Model* | *Chip* | *Architecture* | *Compatible (in theory)*
 | Pi 4 Model B   | BCM2711   | ARMv8 | ✅
 | Pi 3 Model B+  | BCM2837B0 | ARMv8 | ✅
 | Pi 3 Model A+  | BCM2837B0 | ARMv8 | ✅
@@ -19,67 +20,44 @@ Testing conducted on a Raspberry Pi 4 (4GB)
 | Pi Zero        | BCM2835   | ARMv6 | ❌
 |===
 
-=== Download and install
+=== Download and flash SD card
 
-https://www.raspberrypi.com/software/operating-systems/[Download "Raspberry Pi OS with desktop"]
+https://downloads.raspberrypi.org/raspios_lite_arm64/images/[Download latest version here]
 
 https://www.balena.io/etcher/[Use Balena Etcher to flash the img to a MicroSD]
 
+Then, head to the root directory of the install and create an empty file called `ssh` to activate ssh:
 
-+++ <details><summary> +++
-Optional: setup `ssh` and wifi
-+++ </summary><div> +++
-
-- Add ssh: `touch [...]/boot/ssh`
-
-- Add wifi: `vim [...]/boot/wpa_supplicant.conf` and fill with config:
-
-[source,config]
 ----
-country=DE
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-	ssid="WIFI_SSID"
-	psk="WIFI_PASSWORD"
-}
+touch [...]/boot/ssh
 ----
-+++ </div></details> +++
 
-=== Connect to Raspberry Pi
+=== Setup Raspberry Pi
 
-`ssh pi@pi-host-localip` and please change the password as promped by the shell with `passwd` :-).
+- Log in using the default credentials `pi` & `raspberry`.
 
-Then, update the raspberry: `sudo apt-get update && sudo apt-get upgrade`
+- Change the default password using `passwd`.
 
-== Setup Raspberry Pi
+- Update the Pi: `sudo apt-get update && sudo apt-get upgrade`
 
-=== Connect to VNC
 
-Activate VNC Server:
+=== Enable VNC server
 
-- Enter `sudo raspi-config`
+Run `sudo raspi-config` and head to `3 Interface Options` > `P3 VNC` > _Enable it_
 
-- Navigate to `3 Interface Options` > `P3 VNC` > `Yes` _to enable it_
+Install `lxsession`: `sudo apt-get install lxsession`
 
-- Navigate to `2 Display Options` > `D1 Resolution` > `1280x720` _or_ `1920x1080`
+And reboot: `sudo reboot`
 
-- Reboot the raspberry: `sudo reboot`
-
-You should now be able to login to VNC Server using https://www.realvnc.com/en/connect/download/viewer/[RealVNC VNC Viewer].
-Use the `pi` user and your password.
-
+You should now be able to login via VNC using https://www.realvnc.com/en/connect/download/viewer/[RealVNC Viewer]
 
 === Install course-specific packages
-
-==== From package manager
 
 https://ilias.h-ka.de/ilias.php?ref_id=457199&cmdClass=ilobjforumgui&thr_pk=14705&cmd=viewThread&cmdNode=vj:mg&baseClass=ilrepositorygui[Ilias Source]
 
 [source,bash]
 ----
-sudo apt-get install -y firefox-esr gcc gdb openjdk-8-jdk openjdk-11-jre linux-perf
+sudo apt-get install -y firefox-esr gcc gdb openjdk-11-jdk openjdk-11-jre linux-perf
 sudo apt-get install --reinstall build-essential
 ----
 
@@ -90,7 +68,7 @@ Following commands were omitted:
 - `sudo netstat -tlnp`: Tries to map open ports on the machine to their corresponding processes
 - `sun-java6*` was altered to `openjdk-8*` ( + `java6-bin` has been omitted)
 
-==== Install eclipse
+=== Install Eclipse
 
 [source,bash]
 ----
@@ -98,5 +76,9 @@ wget https://rhlx01.hs-esslingen.de/pub/Mirrors/eclipse/oomph/epp/2021-12/M1/ecl
 tar -zxvf eclipse-inst-jre-linux-aarch64.tar.gz
 rm eclipse-inst-jre-linux-aarch64.tar.gz
 cd eclipse-installer
-export DISPLAY=0.0 && ./eclipse-inst
+export DISPLAY=:0.0 && ./eclipse-inst
 ----
+
+=== Launch Eclipse
+
+Select `Eclipse IDE for Embedded C/C++ Developers` and hit `Install`
