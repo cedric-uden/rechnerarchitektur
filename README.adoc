@@ -66,7 +66,7 @@ Following commands were omitted:
 - `sudo apt install tightvncserver`: VNC server is already running
 - `sudo apt install xfce4 xfce4-goodies`: Desktop environment which is already bundled with the raspberry pi
 - `sudo netstat -tlnp`: Tries to map open ports on the machine to their corresponding processes
-- `sun-java6*` was altered to `openjdk-8*` ( + `java6-bin` has been omitted)
+- `sun-java6*` was altered to `openjdk-11*` ( + `java6-bin` has been omitted)
 
 === Install Eclipse
 
@@ -82,3 +82,14 @@ export DISPLAY=:0.0 && ./eclipse-inst
 === Launch Eclipse
 
 Select `Eclipse IDE for Embedded C/C++ Developers` and hit `Install`
+
+
+=== Fetch the project
+
+[source,bash]
+----
+sudo apt-get install -y git
+git clone https://github.com/cedric-uden/rechnerarchitektur.git
+----
+
+And open this in `Ecplise IDE for Embedded C`
