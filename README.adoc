@@ -95,3 +95,14 @@ git clone https://github.com/cedric-uden/rechnerarchitektur.git
 ----
 
 Then open this in `Ecplise IDE for Embedded C`
+
+=== Run the files
+
+change directory to this git dir: e.g. `cd ~/rechnerarchitektur`
+
+----
+make ex01
+./build/add_two_numbers
+make ex02
+./build/christmastree
+----
