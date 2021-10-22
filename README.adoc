@@ -6,7 +6,7 @@
 
 You will need at least a Raspberry Pi 3 or newer. +
 This guide has been tested using a Raspberry Pi 4 (4GB) with a 16GB MicroSD. +
-Notes on why the 64-bit installation is more tedious than comon raspberry pi installations and only runs on beta software can be found https://pimylifeup.com/raspberry-pi-64-bit/[here].
+Notes on why the 64-bit installation is more tedious than common raspberry pi installations and only runs on beta software can be found https://pimylifeup.com/raspberry-pi-64-bit/[here].
 
 [cols="1,1,1,1"]
 |===
@@ -26,7 +26,7 @@ https://downloads.raspberrypi.org/raspios_lite_arm64/images/[Download latest ver
 
 https://www.balena.io/etcher/[Use Balena Etcher to flash the img to a MicroSD]
 
-Then, head to the root directory of the install and create an empty file called `ssh` to activate ssh:
+Then, head to the root directory of the installation and create an empty file called `ssh` to activate ssh:
 
 ----
 touch [...]/boot/ssh
@@ -47,9 +47,11 @@ Run `sudo raspi-config` and head to `3 Interface Options` > `P3 VNC` > _Enable i
 
 Install `lxsession`: `sudo apt-get install lxsession`
 
-And reboot: `sudo reboot`
+Then reboot: `sudo reboot`
 
 You should now be able to login via VNC using https://www.realvnc.com/en/connect/download/viewer/[RealVNC Viewer]
+
+- Modify the screen resolution to your liking: inline `-geometry 1920x1080` to the file `/etc/vnc/vncservice` (+ reboot for the changes to take affect)
 
 === Install course-specific packages
 
@@ -92,4 +94,4 @@ sudo apt-get install -y git
 git clone https://github.com/cedric-uden/rechnerarchitektur.git
 ----
 
-And open this in `Ecplise IDE for Embedded C`
+Then open this in `Ecplise IDE for Embedded C`
