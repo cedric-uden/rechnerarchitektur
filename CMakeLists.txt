@@ -10,7 +10,7 @@ if (${ARCHITECTURE} STREQUAL "x86_64")
     set(CMAKE_ASM_COMPILER aarch64-linux-gnu-gcc)
     set(CMAKE_ASM_FLAGS "-mtune=cortex-a72")
 else()
-    set(CMAKE_ASM_COMPILER as)
+    set(CMAKE_ASM_COMPILER gcc)
 endif()
 
 
