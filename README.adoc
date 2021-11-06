@@ -59,7 +59,7 @@ https://ilias.h-ka.de/ilias.php?ref_id=457199&cmdClass=ilobjforumgui&thr_pk=1470
 
 [source,bash]
 ----
-sudo apt-get install -y firefox-esr gcc gdb openjdk-11-jdk openjdk-11-jre linux-perf
+sudo apt-get install -y firefox-esr gcc gdb openjdk-11-jdk openjdk-11-jre linux-perf cmake
 sudo apt-get install --reinstall build-essential
 ----
 
@@ -101,10 +101,10 @@ Then open this in `Ecplise IDE for Embedded C`
 change directory to this git dir: e.g. `cd ~/rechnerarchitektur`
 
 ----
-make ex01
-./build/add_two_numbers
-make ex02
-./build/christmastree
+cmake .
+make
+./ex01
+./ex02
 ----
 
 == Cross-Compile the files from x86 Linux host

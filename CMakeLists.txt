@@ -9,8 +9,10 @@ EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTUR
 if (${ARCHITECTURE} STREQUAL "x86_64")
     set(CMAKE_ASM_COMPILER aarch64-linux-gnu-gcc)
     set(CMAKE_ASM_FLAGS "-mtune=cortex-a72")
-else()
+elseif(${ARCHITECTURE} STREQUAL "aarch64")
     set(CMAKE_ASM_COMPILER gcc)
+else()
+    message("Error identifying supported build platform.")
 endif()
 
 
