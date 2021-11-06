@@ -1,6 +1,7 @@
 :toc:
 :toclevels: 2
 :leveloffset: 1
+:toc-title:
 
 :source-highlighter: rouge
 
