@@ -106,3 +106,15 @@ make ex01
 make ex02
 ./build/christmastree
 ----
+
+== Cross-Compile the files from x86 Linux host
+
+The assembler files can also be cross-compiled from any x86 host. +
+To achieve this, simply install `gcc-aarch64-linux-gnu` and compile it using
+its bundled `gcc`:
+
+[source,bash]
+----
+sudo apt-get install gcc-aarch64-linux-gnu
+aarch64-linux-gnu-gcc -mtune=cortex-a72 add_two_numbers0.s
+----
