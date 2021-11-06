@@ -1,3 +1,9 @@
+:toc:
+:toclevels: 2
+:leveloffset: 1
+
+:source-highlighter: rouge
+
 = Computer Architecture Course
 
 == Setup Raspberry Pi OS
