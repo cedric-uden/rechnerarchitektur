@@ -22,21 +22,22 @@ string00: .asciz "Result = %lld \n"
                 // (for compatibility with other assemblers), but it is ignored by the GNU assembler;
                 // the GNU assembler treats all undefined symbols as external
 
+add_two_numbers:
+    ADD X1, X1, X2
+    BR LR
 
 main:  // the symbolic address main stands for the address of the first instruction of the program (stp x29,...)
     stp x29, x30, [sp, #-0x10]!  // allocate 16 bytes on the stack and then store frame pointer and link register
 
     ldr x4, =summand0            // pseudo load of address of summand0
-//    ldr x4, addr_of_summand0     // load address of summand0
-    ldr x1, [x4,#0]              // load data at summand0
-//    ldr x1, =4                   // pseudo load of 4
-//    ldr x3, =summand1            // pseudo load address of summand1
-//    ldr x2, [x3]                 // load data at summand1
-    ldr x2, =5                   // pseudo load of 5
-    add x1, x1, x2               // perform the addition and write result to the second argument register of printf
-    ldr x0, =string00            // pseudo load address of string00 to the first argument register of printf
-    bl printf                    // branches to subroutine printf, setting the
+    ldr x1, [x4]                // load data at summand0
+    ldr x4, =summand1	         // pseudo load of 5
+    ldr x2, [x4]
                                  // link register x30 to PC+4
+    BL add_two_numbers
+    LDR x0, =string00
+
+    BL printf
     ldp x29, x30, [sp], #0x10    // restore frame pointer and link register from stack and increment stack pointer
     ret                          // branch to link register x30
 
