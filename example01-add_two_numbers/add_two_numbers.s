@@ -30,9 +30,9 @@ main:  // the symbolic address main stands for the address of the first instruct
     stp x29, x30, [sp, #-0x10]!  // allocate 16 bytes on the stack and then store frame pointer and link register
 
     ldr x4, =summand0            // pseudo load of address of summand0
-    ldr x1, [x4]                // load data at summand0
+    ldur x1, [x4]                // load data at summand0
     ldr x4, =summand1	         // pseudo load of 5
-    ldr x2, [x4]
+    ldur x2, [x4]
                                  // link register x30 to PC+4
     BL add_two_numbers
     LDR x0, =string00
