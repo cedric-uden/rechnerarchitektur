@@ -24,3 +24,6 @@ project (ex01)
 add_executable(ex01 example01-add_two_numbers/add_two_numbers.s)
 project (ex02)
 add_executable(ex02 example02-ascii_art_christmastree/christmastree.s)
+project (ex04)
+add_executable(ex04 example04-array_operations/array_operations.s)
+
