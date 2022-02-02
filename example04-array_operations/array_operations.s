@@ -3,7 +3,6 @@
         // (i.e. the section tht holds initialized writable data)
 
 
-foo: .quad 42
 A: .quad 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 B: .quad 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 
@@ -26,6 +25,8 @@ str: .asciz "Answer: %lld\n"
 main:
     stp x29, x30, [sp, #-0x10]!  // allocate 16 bytes on the stack and then store frame pointer and link register
 
+
+	// load array and print it's 8th element
     LDR x4, =B
     LDR x1, [x4, #64] 
 
@@ -33,13 +34,26 @@ main:
     BL printf
 
     
-//    LDR x3, =foo
-//    ADD x4, x3, #4
-    LDR x4, =foo
-    LDR x1, [x4]
+	// load array A and load it's 3rd element
+    LDR x3, =A
+	LDR x3, [x3, #24]
+
+	LDR x4, =B  // load array B
+	
+	// store the 3rd element from array A in array B at its 8th element
+	STR x3, [x4, #64]
+
+
+
+
+	// print again to verify
+    LDR x4, =B
+    LDR x1, [x4, #64] 
 
     LDR x0, =str
     BL printf
+
+
 
     ldp x29, x30, [sp], #0x10
     ret                          // branch to link register x30
