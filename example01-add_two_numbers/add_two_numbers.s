@@ -21,7 +21,7 @@ string00: .asciz "Result = %lld \n"
                 // the GNU assembler treats all undefined symbols as external
 
 add_two_numbers:
-    SUB X1, X2, X1
+    ADD X1, X2, X1
     BR LR
 
 main:  // the symbolic address main stands for the address of the first instruction of the program (stp x29,...)
