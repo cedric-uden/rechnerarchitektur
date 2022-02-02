@@ -40,14 +40,14 @@ main:
 	LDR x20, =B
 
 	// load the values of the indices into the registers
-	mov x3, #5               // i = 5
-    mov x4, #2               // j = 2
+	MOV x3, #5               // i = 5
+    MOV x4, #2               // j = 2
     SUB X9, X3, X4           // compute i-j (5-2=3)
     LSL X9, X9, #3           // multiply by 8 to convert the word offset to a byte offset
 
     ADD X11, X19, X9         // compute &A[i-j] (&A[3])
-    LDUR X10, [X11, #0]      // load A[i-j] (A[3] = 8)
-    STUR X10, [X20, #64]     // store in B[8]
+    LDR X10, [X11, #0]      // load A[i-j] (A[3] = 8)
+    STR X10, [X20, #64]     // store in B[8]
 
 
 
