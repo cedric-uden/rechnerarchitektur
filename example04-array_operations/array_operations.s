@@ -3,6 +3,7 @@
         // (i.e. the section tht holds initialized writable data)
 
 
+foo: .quad 42
 A: .quad 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 B: .quad 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 
@@ -31,6 +32,14 @@ main:
     LDR x0, =str
     BL printf
 
+    
+//    LDR x3, =foo
+//    ADD x4, x3, #4
+    LDR x4, =foo
+    LDR x1, [x4]
+
+    LDR x0, =str
+    BL printf
 
     ldp x29, x30, [sp], #0x10
     ret                          // branch to link register x30
