@@ -5,8 +5,6 @@
 summand0: .quad 4  // .quad is a GNU assembler directive used to define 64 bit numeric value(s)
                    // summand0 is a label that represents the numeric address of the numeric value(s)
 summand1: .quad 5
-addr_of_summand0: .quad summand0
-addr_of_summand1: .quad summand1
 
 string00: .asciz "Result = %lld \n"
 
@@ -23,7 +21,7 @@ string00: .asciz "Result = %lld \n"
                 // the GNU assembler treats all undefined symbols as external
 
 add_two_numbers:
-    ADD X1, X1, X2
+    SUB X1, X2, X1
     BR LR
 
 main:  // the symbolic address main stands for the address of the first instruction of the program (stp x29,...)
