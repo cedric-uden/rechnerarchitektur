@@ -1,6 +1,6 @@
 .data   // GNU assembler directive that tells the assembler to move the following statements
-        // into the data section of an �Executable and Linkable Format (ELF)" object file
-        // (i.e. the section tht holds initialized writable data)
+           // into the data section of an �Executable and Linkable Format (ELF)" object file
+         // (i.e. the section tht holds initialized writable data)
 
 
 A: .quad 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
@@ -12,21 +12,21 @@ str: .asciz "Answer: %lld\n"
 
 
 .text   // GNU assembler directive that tells the assembler to move the following statements
-        // into the text section of the ELF object file
-        // (i.e. the section that holds instructions and read-only data)
+           // into the text section of the ELF object file
+          // (i.e. the section that holds instructions and read-only data)
 
 .global main    // GNU assembler directive that makes the symbol visible to the linker because
                 // other object files might want to use it (e.g. crt0.S)
 
 .extern printf  // the directive .extern is accepted in the assembler source program
-                // (for compatibility with other assemblers), but it is ignored by the GNU assembler;
-                // the GNU assembler treats all undefined symbols as external
+              // (for compatibility with other assemblers), but it is ignored by the GNU assembler;
+              // the GNU assembler treats all undefined symbols as external
 
 main:
     stp x29, x30, [sp, #-0x10]!  // allocate 16 bytes on the stack and then store frame pointer and link register
 
 
-	// load array and print it's 8th element
+    // load array and print it's 8th element
     LDR x4, =B
     LDR x1, [x4, #64] 
 
@@ -34,19 +34,19 @@ main:
     BL printf
 
     
-	// load array A and load it's 3rd element
+    // load array A and load it's 3rd element
     LDR x3, =A
-	LDR x3, [x3, #24]
+    LDR x3, [x3, #24]
 
-	LDR x4, =B  // load array B
-	
-	// store the 3rd element from array A in array B at its 8th element
-	STR x3, [x4, #64]
-
-
+    LDR x4, =B  // load array B
+    
+    // store the 3rd element from array A in array B at its 8th element
+    STR x3, [x4, #64]
 
 
-	// print again to verify
+
+
+    // print again to verify
     LDR x4, =B
     LDR x1, [x4, #64] 
 
@@ -56,25 +56,4 @@ main:
 
 
     ldp x29, x30, [sp], #0x10
-    ret                          // branch to link register x30
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ret     // branch to link register x30
